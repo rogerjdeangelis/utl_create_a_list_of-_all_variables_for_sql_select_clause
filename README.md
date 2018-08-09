@@ -1,5 +1,4 @@
 # utl_create_a_list_of-_all_variables_for_sql_select_clause
-Create a list of  all variables for sql select clause. Keywords: sas sql join merge big data analytics macros oracle teradata mysql sas communities stackoverflow statistics artificial inteligence AI Python R Java Javascript WPS Matlab SPSS Scala Perl C C# Excel MS Access JSON graphics maps NLP natural language processing machine learning igraph DOSUBL DOW loop stackoverflow SAS community.
     Create a list of  all variables for sql select clause;
 
     see github
@@ -12,7 +11,7 @@ Create a list of  all variables for sql select clause. Keywords: sas sql join me
     SQL dictionaries are often too slow on EG servers, especially
     when the server caters to non-programmers.
 
-       Six Solutions
+       Seven Solutions
 
            1. SQL feedback (best)
            2. SQL dictionaries (write a program andoften too slow on EG servers 10 to 30 minutes)
@@ -20,6 +19,7 @@ Create a list of  all variables for sql select clause. Keywords: sas sql join me
            4. proc contents (write separate a program)
            5. proc datasets (write separate a program)
            6. Proc report   (write separate a program)
+           7. datastep put (write separate a program  - put (_all_) (= $ +(-1) ',' /);)
 
     INPUT
     =====
@@ -291,4 +291,24 @@ Create a list of  all variables for sql select clause. Keywords: sas sql join me
         DEFINE  DIV / DISPLAY FORMAT= $16. WIDTH=16    SPACING=2   LEFT "DIV" ;
         DEFINE  LOGSALARY / SUM FORMAT= BEST9. WIDTH=9     SPACING=2   RIGHT "LOGSALARY" ;
         RUN;
+
+    7. Datastep put (write separate a program)
+    -------------------------------------------
+
+       data _null_;
+          set sashelp.class(obs=1);
+          put (_numeric_ _character_) ( $ +(-1) ',' /);
+       run;quit;
+
+       data _null_;
+          set sashelp.class(obs=1);
+          call missing(of _all_);
+          put (_all_) (= $ +(-1) ',' /);
+       run;quit;
+
+       NAME= ,
+       SEX= ,
+       AGE=.,
+       HEIGHT=.,
+       WEIGHT=.
 
