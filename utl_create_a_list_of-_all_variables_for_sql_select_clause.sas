@@ -10,7 +10,7 @@ dataset.
 SQL dictionaries are often too slow on EG servers, especially
 when the server caters to non-programmers.
 
-   Six Solutions
+   Seven Solutions
 
        1. SQL feedback (best)
        2. SQL dictionaries (write a program andoften too slow on EG servers 10 to 30 minutes)
@@ -18,6 +18,7 @@ when the server caters to non-programmers.
        4. proc contents (write separate a program)
        5. proc datasets (write separate a program)
        6. Proc report   (write separate a program)
+       7. datastep put (write separate a program  - put (_all_) (= $ +(-1) ',' /);)
 
 INPUT
 =====
@@ -289,4 +290,24 @@ PROCESS
     DEFINE  DIV / DISPLAY FORMAT= $16. WIDTH=16    SPACING=2   LEFT "DIV" ;
     DEFINE  LOGSALARY / SUM FORMAT= BEST9. WIDTH=9     SPACING=2   RIGHT "LOGSALARY" ;
     RUN;
+
+7. Datastep put (write separate a program)
+-------------------------------------------
+
+   data _null_;
+      set sashelp.class(obs=1);
+      put (_numeric_ _character_) ( $ +(-1) ',' /);
+   run;quit;
+
+   data _null_;
+      set sashelp.class(obs=1);
+      call missing(of _all_);
+      put (_all_) (= $ +(-1) ',' /);
+   run;quit;
+
+   NAME= ,
+   SEX= ,
+   AGE=.,
+   HEIGHT=.,
+   WEIGHT=.
 
